@@ -1,25 +1,39 @@
-  body {
-    font: 10px sans-serif;
-  }
+body {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif;
+  line-height: 1.4;
+}
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+.axis text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  fill: #999;
+}
 
-  .x.axis path {
-    display: none;
-  }
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
-  .line {
-    fill: none;
-    stroke: #008c7e;
-    stroke-width: 2;
-  }
+.x.axis path {
+  display: none;
+}
+.y.axis path,
+.y.axis line {
+  fill: none;
+  stroke: #008c7e;
+  stroke-width: 2;
+}
 
-  circle {
-    fill: #1DB34F;
-    stroke: #FFF;
-    stroke-width: 2;
+.line {
+  fill: none;
+  stroke: #008c7e;
+  stroke-width: 2px;
+}
+
+.dots circle {
+  fill: #008c7e;
+  stroke: white;
+  stroke-width: 2;
+}
