@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/money.css">
-  <script src="js/d3.v3.js"></script>
+  <script src="js/d3.v3.min.js"></script>
 </head>
 
 <body>
@@ -11,7 +11,7 @@
   <script>
     var margin = {top: 20, right: 30, bottom: 30, left: 50},
     width = 720 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 300 - margin.top - margin.bottom;
 
     var parseDate = d3.time.format("%Y-%m-%d").parse;
 
@@ -24,12 +24,13 @@
     var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .tickFormat(d3.time.format("%Y-%m-%d"));
+    .ticks(d3.time.month, 1)  //set time interval at xAxis
+    .tickFormat(d3.time.format("%m/%d"));
 
     var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(5);
+    .ticks(3);
 
     var line = d3.svg.line()
     .x(function(d) { return x(parseDate(d.date)); })
