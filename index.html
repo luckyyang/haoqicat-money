@@ -94,6 +94,8 @@
         cy: function(d) { return y(d.total_fee); },
         r: 4
       })
+
+      d3.selectAll(".x .tick line").attr("y2", -height);  //stretch the line
     };  //end of moneyHandler
 
     // jsonp url

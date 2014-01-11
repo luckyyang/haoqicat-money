@@ -31,6 +31,12 @@ body {
   min-height: 200px;
 }
 
+.line {
+  fill: none;
+  stroke: #008c7e;
+  stroke-width: 2px;
+}
+
 .axis text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
@@ -40,7 +46,7 @@ body {
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #EEE;
   shape-rendering: crispEdges;
 }
 
@@ -53,12 +59,6 @@ body {
   fill: none;
   stroke: #008c7e;
   stroke-width: 2;
-}
-
-.line {
-  fill: none;
-  stroke: #008c7e;
-  stroke-width: 2px;
 }
 
 .dots circle {
