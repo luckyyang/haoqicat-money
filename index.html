@@ -6,12 +6,18 @@
 </head>
 
 <body>
-  <div id="money-graph"></div>
-
+  <div class="container">
+    <div class="capped-box">
+      <header>
+        <h3>课程销售额/月</h3>
+      </header>
+      <div class="money-graph" id="money-graph"></div>
+    </div>
+  </div>
   <script>
     var margin = {top: 20, right: 30, bottom: 30, left: 50},
     width = 720 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 200 - margin.top - margin.bottom;
 
     var parse_date = d3.time.format("%Y-%m-%d").parse;
 

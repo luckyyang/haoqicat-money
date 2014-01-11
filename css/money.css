@@ -3,6 +3,34 @@ body {
   line-height: 1.4;
 }
 
+.container {
+  width: 720px;
+  margin: 40px auto;
+}
+
+.capped-box {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #DDD;
+}
+
+.capped-box>h3, .capped-box header>h3 {
+  margin: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 1px solid #DDD;
+  padding: 10px;
+  line-height: 100%;
+  background: #F7F7F7;
+}
+
+.money-graph {
+  min-height: 200px;
+}
+
 .axis text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
@@ -19,6 +47,7 @@ body {
 .x.axis path {
   display: none;
 }
+
 .y.axis path,
 .y.axis line {
   fill: none;
