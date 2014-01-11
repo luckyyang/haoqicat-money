@@ -13,19 +13,17 @@
     width = 720 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
-    var parseDate = d3.time.format("%Y-%m-%d").parse;
+    var parse_date = d3.time.format("%Y-%m-%d").parse;
 
-    var x = d3.time.scale()
-    .range([0, width]);
+    var x = d3.scale.ordinal()
+    .rangePoints([0, width]);
 
     var y = d3.scale.linear()
     .range([height, 0]);
 
     var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom")
-    .ticks(d3.time.month, 1)  //set time interval at xAxis
-    .tickFormat(d3.time.format("%m/%d"));
+    .orient("bottom");
 
     var yAxis = d3.svg.axis()
     .scale(y)
@@ -33,7 +31,7 @@
     .ticks(3);
 
     var line = d3.svg.line()
-    .x(function(d) { return x(parseDate(d.date)); })
+    .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.total_fee); });
 
     var svg = d3.select("#money-graph").append("svg")
@@ -44,8 +42,23 @@
 
     // callback after get the json data
     var moneyHandler = function(data){
-      x.domain(d3.extent(data, function(d) { return parseDate(d.date); }));
-      y.domain([0, d3.max(data, function(d) { return d.total_fee; })]);
+      data.forEach(function(d) {
+        d.total_fee = +d.total_fee;
+        d.date = parse_date(d.date);
+      });
+
+      var month_total = total_per_month(data);
+
+      month_total.forEach(function(d) {
+        d.total_fee = +d.total_fee;
+        d.date = d.date.getFullYear() + "/" + (d.date.getMonth()+1);
+      })
+
+      console.log(month_total);
+      console.log(month_total.map(function(d) { return d.date; }));
+
+      x.domain(month_total.map(function(d) { return d.date; }));
+      y.domain([0, d3.max(month_total, function(d) { return d.total_fee; })]);
 
       svg.append("g")
       .attr("class", "x axis")
@@ -63,17 +76,17 @@
       .text("销售额(￥)");
 
       svg.append("path")
-      .datum(data)
+      .datum(month_total)
       .attr("class", "line")
       .attr("d", line);
 
       svg.append("g").attr("class", "dots")
-      .selectAll(".dot").data(data).enter()
+      .selectAll(".dot").data(month_total).enter()
       .append("circle")
       .attr({
-        cx: function(d) { return x(parseDate(d.date)); },
+        cx: function(d) { return x(d.date); },
         cy: function(d) { return y(d.total_fee); },
-        r: 4,
+        r: 4
       })
     };  //end of moneyHandler
 
@@ -84,5 +97,40 @@
     script.setAttribute('src', url);
     // append script to head to get the json from server
     document.getElementsByTagName('head')[0].appendChild(script); 
+
+    //create json: total money per month
+    function total_per_month(data) {
+      var month_sum = [];
+      for(var i=0; i < data.length-1;i++) {
+        var total=data[i].total_fee;
+        for(var j=i+1; j < data.length; j++) {
+          if (data[j].date.getMonth() == data[i].date.getMonth()) {
+            total += data[j].total_fee;
+            if(j == data.length-1) {
+              month_sum.push({
+                'total_fee':total,
+                'date': data[data.length-1].date
+              });
+              i=j-1;
+              break;
+            }
+            }else {
+            month_sum.push({
+              'total_fee': total,
+              'date': data[j-1].date  //j-1 is the last order day of this month
+            });
+            if(j == data.length-1) {
+              month_sum.push({
+                'total_fee': data[data.length-1].total_fee,
+                'date': data[data.length-1].date
+              });
+            }
+            i=j-1;
+            break;
+          }
+        }
+      }
+      return month_sum;
+    }
   </script>
 </body>
