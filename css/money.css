@@ -107,7 +107,7 @@ ul, ol {
   width: 140px;
 }
 
-.tooltip ul .totals {
+.tooltip .totals {
   border-top: 3px solid #008c7e;
   border-right: 1px solid #333;
 }
@@ -116,6 +116,37 @@ ul, ol {
   color: #ddd;
 }
 
-.tooltip .uniques {
+.tooltip .counts {
   border-top: 3px solid #3499D3;
+}
+
+.money-graph-stats .col {
+  padding: 10px 0 0 0;
+  text-align: center;
+  border-left: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  color: #999;
+  padding: 10px;
+  display: table-cell;
+  width: 1%;
+  vertical-align: top;
+}
+
+.money-graph-stats>div:first-child {
+  border-left: none;
+}
+
+.money-graph-stats .num {
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+  color: #333;
+}
+
+.money-graph-stats .totals {
+  color: #008c7e;
+}
+
+.money-graph-stats .counts {
+  color: #3499D3;
 }

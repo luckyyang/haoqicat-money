@@ -12,6 +12,16 @@
         <h3>课程销售额/月</h3>
       </header>
       <div class="money-graph" id="money-graph"></div>
+      <div class="money-graph-stats">
+      <div class="col">
+        <span class="num totals">0</span>
+        元
+      </div>
+      <div class="col">
+        <span class="num counts">0</span>
+        门课程
+      </div>
+    </div>
     </div>
   </div>
   <script>
@@ -52,6 +62,16 @@
         d.total_fee = +d.total_fee;
         d.date = parse_date(d.date);
       });
+
+      //display totals and counts sold
+      var counts = data.length,
+          totals = 0;
+      for (var i = 0; i < data.length; i++) {
+        totals += data[i].total_fee;
+      }
+
+      d3.select('.num.totals').html(totals)
+      d3.select('.num.counts').html(counts)
 
       var month_total = total_per_month(data);
 
@@ -110,7 +130,7 @@
         tooltip.html('<span class="title">' + d.date + '</span>'
                      + '<ul><li class="totals">'
                      +'<strong>' + d.total_fee + '</strong>元</li>'
-                     + '<li class="uniques"><strong>'
+                     + '<li class="counts"><strong>'
                      + d.count + '</strong>门课程</li></ul>'
                     )
         .style("left", (d3.event.pageX) + "px")
