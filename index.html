@@ -92,10 +92,38 @@
       .attr({
         cx: function(d) { return x(d.date); },
         cy: function(d) { return y(d.total_fee); },
-        r: 4
+        r: 4,
+        class: "dot"
       })
 
       d3.selectAll(".x .tick line").attr("y2", -height);  //stretch the line
+
+      //add tooltip
+      var tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+      d3.selectAll(".dot")
+      .on("mouseover", function(d) {
+        tooltip.transition()
+        .duration(200)
+        .style("opacity", .9);
+        tooltip.html('<span class="title">' + d.date + '</span>'
+                     + '<ul><li class="totals">'
+                     +'<strong>' + d.total_fee + '</strong>元</li>'
+                     //+ '<li class="uniques"><strong>'
+                     //+ 0 + '</strong>门课程</li>
+                     + '</ul>'
+                    )
+        .style("left", (d3.event.pageX) + "px")
+        .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+        tooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
+      });
     };  //end of moneyHandler
 
     // jsonp url

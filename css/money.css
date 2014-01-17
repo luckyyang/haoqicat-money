@@ -3,6 +3,12 @@ body {
   line-height: 1.4;
 }
 
+ul, ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .container {
   width: 720px;
   margin: 40px auto;
@@ -65,4 +71,51 @@ body {
   fill: #008c7e;
   stroke: white;
   stroke-width: 2;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 9999;
+  padding: 0;
+  background: #222;
+  color: #BBB;
+  font-size: 12px;
+  text-align: left;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.tooltip .title {
+  display: block;
+  padding: 10px;
+  margin: 0;
+  line-height: 1;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.tooltip ul {
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.tooltip ul li {
+  display: inline-block;
+  padding: 10px;
+  width: 140px;
+}
+
+.tooltip ul .totals {
+  border-top: 3px solid #008c7e;
+  border-right: 1px solid #333;
+}
+
+.tooltip strong {
+  color: #ddd;
+}
+
+.tooltip .uniques {
+  border-top: 3px solid #1D7FB3;
 }
