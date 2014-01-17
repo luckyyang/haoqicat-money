@@ -1,17 +1,96 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ol, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
 body {
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
   line-height: 1.4;
 }
 
-ul, ol {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
+ol, ul {
+  list-style: none;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+h1, h2 {
+  font-size: 30px;
+  font-weight: 300;
+  color: #333;
+  margin: 10px 0;
 }
 
 .container {
   width: 720px;
   margin: 40px auto;
+}
+
+#header {
+  background-color: #FAFAFA;
+  background: -moz-linear-gradient(#fafafa, #eaeaea);
+  background: -webkit-linear-gradient(#FAFAFA, #EAEAEA);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#eaeaea')";
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid #CACACA;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4),0 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.clearfix {
+  display: block;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+div.clearfix {
+  width: 720px;
+  margin: 0 auto;
+}
+
+.site-logo {
+  float: left;
+  margin: 10px 0;
+}
+
+.site-logo a {
+  float: left;
+  color: #000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#header ul.top-nav {
+  position: relative;
+  float: right;
+}
+
+#header ul.top-nav li {
+  position: relative;
+  float: left;
+}
+
+#header ul.top-nav li a {
+  margin-left: 15px;
+  display: block;
+  height: 47px;
+  line-height: 46px;
+  color: #000;
+  font-weight: bold;
+  font-size: 13px;
 }
 
 .capped-box {
