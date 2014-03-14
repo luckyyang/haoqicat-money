@@ -229,3 +229,13 @@ div.clearfix {
 .money-graph-stats .counts {
   color: #3499D3;
 }
+
+.main-content h3 {
+  font-size: 20px;
+  margin: 20px 0 10px;
+}
+
+.main-content p {
+  font-size: 14px;
+  margin: 16px 0 5px;
+}
