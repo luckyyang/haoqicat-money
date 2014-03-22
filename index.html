@@ -186,35 +186,20 @@
     //create json: total money per month
     function total_per_month(data) {
       var month_sum = [];
-      for(var i=0; i < data.length-1;i++) {
+      for(var i=0; i < data.length;i++) {
         var total=data[i].total_fee;
-        for(var j=i+1; j < data.length; j++) {
-          if (data[j].date.getMonth() == data[i].date.getMonth()) {
-            total += data[j].total_fee;
-            if(j == data.length-1) {
-              month_sum.push({
-                'total_fee':total,
-                'date': data[data.length-1].date,
-                'count': j-i
-              });
-              i=j-1;
-              break;
-            }
-            }else {
+        for(var j=i+1; j <= data.length; j++) {
+          if((j == data.length) || 
+           (data[j].date.getMonth() != data[i].date.getMonth())) {
             month_sum.push({
               'total_fee': total,
               'date': data[j-1].date,  //j-1 is the last order day of this month
               'count': j-i
             });
-            if(j == data.length-1) {
-              month_sum.push({
-                'total_fee': data[data.length-1].total_fee,
-                'date': data[data.length-1].date,
-                'count': 1
-              });
-            }
             i=j-1;
             break;
+          } else {
+            total += data[j].total_fee;
           }
         }
       }
