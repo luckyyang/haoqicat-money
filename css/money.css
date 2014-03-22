@@ -119,7 +119,7 @@ div.clearfix {
 .line {
   fill: none;
   stroke: #008c7e;
-  stroke-width: 2px;
+  stroke-width: 2;
 }
 
 .axis text {
